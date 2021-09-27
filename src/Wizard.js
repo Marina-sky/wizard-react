@@ -4,6 +4,8 @@ import "./Wizard.css";
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
+import Step4 from "./components/Step4";
+import Message from "./components/Message";
 
 class Wizard extends React.Component {
   constructor(props) {
@@ -15,7 +17,7 @@ class Wizard extends React.Component {
 
   _next = () => {
     let currentStep = this.state.currentStep;
-    currentStep = currentStep >= 2 ? 3 : currentStep + 1;
+    currentStep = currentStep >= 4 ? 5 : currentStep + 1;
     this.setState({
       currentStep: currentStep,
     });
@@ -58,14 +60,22 @@ class Wizard extends React.Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep < 3) {
+    if (currentStep < 4) {
       return (
-        <button
-          className="btn btn-primary float-right"
-          type="button"
-          onClick={this._next}
-        >
+        <button className="btn btn-primary" type="button" onClick={this._next}>
           Dalje
+        </button>
+      );
+    }
+    return null;
+  }
+
+  sendButton() {
+    let currentStep = this.state.currentStep;
+    if (currentStep === 4) {
+      return (
+        <button className="btn btn-success" type="button" onClick={this._next}>
+          Pošalji
         </button>
       );
     }
@@ -75,7 +85,7 @@ class Wizard extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Konfigurator servisa</h1>
+        <h1 className="text-center mb-5">Konfigurator servisa</h1>
         <form onSubmit={this.handleSubmit}>
           <Step1
             currentStep={this.state.currentStep}
@@ -89,8 +99,13 @@ class Wizard extends React.Component {
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
           />
-          {this.previousButton()}
-          {this.nextButton()}
+          <Step4 currentStep={this.state.currentStep} />
+          <Message currentStep={this.state.currentStep} />
+          <div className="buttons">
+            {this.previousButton()}
+            {this.nextButton()}
+            {this.sendButton()}
+          </div>
         </form>
       </div>
     );

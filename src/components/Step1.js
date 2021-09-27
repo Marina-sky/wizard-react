@@ -5,7 +5,7 @@ export default function Step1(props) {
     return null
   } else {
         return (
-          <div className="Step1">
+          <div className="Step1 mb-5">
             <h2>Korak 1. Odaberite proizvođača vašeg vozila</h2>
             <input
               type="radio"

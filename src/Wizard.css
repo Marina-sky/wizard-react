@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  max-width: 800px;
+  margin: 50px auto;
 }
 
 input {
@@ -7,5 +8,21 @@ input {
 }
 
 button {
-  margin: 20px;
+  margin: 10px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.buttons {
+  text-align: right;
+}
+
+.close-button {
+  text-align: center;
+}
+
+.remark {
+  padding: 20px 10px;
 }

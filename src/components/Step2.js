@@ -5,7 +5,7 @@ export default function Step2(props) {
     return null;
   } else {
     return (
-      <div className="Step2">
+      <div className="Step2 mb-5">
         <h2>Korak 2. Odaberite jednu ili više usluga za koje ste</h2>
         <input
           type="checkbox"
@@ -31,6 +31,7 @@ export default function Step2(props) {
           onChange={props.handleChange}
         />
         <label htmlFor="service3">Promjena guma (100 kn)</label>
+				<br />
         <input
           type="checkbox"
           value="Servis klima uređaja (299 kn)"
@@ -55,10 +56,10 @@ export default function Step2(props) {
           onChange={props.handleChange}
         />
         <label htmlFor="service6">Zamjena ulja u kočnicama (299 kn)</label>
-        <div className="coupon">
+        <div className="coupon text-end">
           <a href="/">Imam kupon</a>
         </div>
-        <div className="price">UKUPNO: 950 KN</div>
+        <div className="price text-end">UKUPNO: 950 KN</div>
       </div>
     );
   }
