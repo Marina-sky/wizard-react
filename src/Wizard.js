@@ -1,11 +1,14 @@
 import React from "react";
 import "./Wizard.css";
+import UserData from "./UserData";
 
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
 import Step3 from "./components/Step3";
 import Step4 from "./components/Step4";
 import Message from "./components/Message";
+
+const store = new UserData();
 
 class Wizard extends React.Component {
   constructor(props) {
@@ -90,16 +93,19 @@ class Wizard extends React.Component {
           <Step1
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
+            store={store}
           />
           <Step2
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
+            store={store}
           />
           <Step3
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
+            store={store}
           />
-          <Step4 currentStep={this.state.currentStep} />
+          <Step4 currentStep={this.state.currentStep} store={store} />
           <Message currentStep={this.state.currentStep} />
           <div className="buttons">
             {this.previousButton()}
