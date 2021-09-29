@@ -54,17 +54,16 @@ export default function Step4(props) {
         </div>
         <div className="row">
           <div className="col">Ime i prezime:</div>
-          <div className="col">Marina Momčilov</div>
+          <div className="col">{props.store.user.name}</div>
           <div className="col">Email adresa:</div>
-          <div className="col">mmomcilov@chem.pmf.hr</div>
+          <div className="col">{props.store.user.email}</div>
         </div>
         <div className="row">
           <div className="col">Broj telefona:</div>
-          <div className="col">091 123 4567</div>
+          <div className="col">{props.store.user.phone}</div>
           <div className="col">Napomena:</div>
           <div className="col">
-            Kod auta se prilikom prelaska preko rupa čuje lupanje pa bi i to
-            trebalo pogledati.
+            {props.store.user.remark}
           </div>
         </div>
       </div>
