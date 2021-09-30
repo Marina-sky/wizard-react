@@ -2,14 +2,20 @@ import React from "react";
 
 export default function Step2(props) {
   function handleChange(event) {
+		const service = {
+			service: event.target.value,
+			price: event.target.dataset.price
+		}
     if (event.target.checked) {
-      props.store.service.push(event.target.value);
+      props.store.service.push(service);
     } else {
-      let index = props.store.service.indexOf(event.target.value);
+      let index = props.store.service.findIndex(i => i.service === event.target.value);
       if (index !== -1) {
         props.store.service.splice(index, 1);
       }
     }
+		//sum += event.target.dataset.price;
+		console.log(props.store.service);
   }
 
   if (props.currentStep !== 2) {
@@ -22,6 +28,7 @@ export default function Step2(props) {
         type="checkbox"
         value="Zamjena ulja i filtera"
         name="service"
+        data-price={500}
         id="service1"
         onChange={handleChange}
       />
@@ -30,6 +37,7 @@ export default function Step2(props) {
         type="checkbox"
         value="Promjena pakni"
         name="service"
+        data-price={450}
         id="service2"
         onChange={handleChange}
       />
@@ -37,6 +45,7 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Promjena guma"
+        data-price={100}
         name="service"
         id="service3"
         onChange={handleChange}
@@ -46,6 +55,7 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Servis klima uređaja"
+        data-price={299}
         name="service"
         id="service4"
         onChange={handleChange}
@@ -54,6 +64,7 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Balansiranje guma"
+        data-price={50}
         name="service"
         id="service5"
         onChange={handleChange}
@@ -62,6 +73,7 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Zamjena ulja u kočnicama"
+        data-price={299}
         name="service"
         id="service6"
         onChange={handleChange}

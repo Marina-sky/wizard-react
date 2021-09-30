@@ -26,17 +26,18 @@ export default function Step4(props) {
           </div>
         </div>
         <div className="row">
-          <div className="col-6">{props.store.model}</div>
-          {props.store.service.map((service, index) => {
-            return (
-              <div className="row" key={index}>
-                <div className="col-6"></div>
-                <div className="col">{service}</div>
-                <div className="col text-end">500,00 KN</div>
-              </div>
-            );
-          })}
+          <div className="col">{props.store.model}</div>
         </div>
+        {props.store.service.map((item) => {
+          const { id, service, price } = item;
+          return (
+            <div className="row" key={id}>
+              <div className="col-6"></div>
+              <div className="col">{service}</div>
+              <div className="col text-end">{price},00 KN</div>
+            </div>
+          );
+        })}
         <div className="row">
           <div className="col text-end">Popust (30%): -285 KN</div>
         </div>
@@ -62,9 +63,7 @@ export default function Step4(props) {
           <div className="col">Broj telefona:</div>
           <div className="col">{props.store.user.phone}</div>
           <div className="col">Napomena:</div>
-          <div className="col">
-            {props.store.user.remark}
-          </div>
+          <div className="col">{props.store.user.remark}</div>
         </div>
       </div>
     </div>
