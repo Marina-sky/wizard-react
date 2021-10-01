@@ -34,6 +34,12 @@ class Wizard extends React.Component {
     });
   };
 
+   setStep = (step) => {
+    this.setState({
+      currentStep: step,
+    });
+  }
+
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
@@ -105,7 +111,7 @@ class Wizard extends React.Component {
             handleChange={this.handleChange}
             store={store}
           />
-          <Step4 currentStep={this.state.currentStep} store={store} />
+          <Step4 currentStep={this.state.currentStep} store={store} setStep={this.setStep} />
           <Message currentStep={this.state.currentStep} />
           <div className="buttons">
             {this.previousButton()}

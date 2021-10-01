@@ -1,6 +1,20 @@
 import React from "react";
 
 export default function Step4(props) {
+  let total = props.store.sum - props.store.discount;
+
+  function changeModel() {
+    props.setStep(1);
+  }
+
+  function changeService() {
+    props.setStep(2);
+  }
+
+  function changeContactInfo() {
+    props.setStep(3);
+  }
+
   if (props.currentStep !== 4) {
     return null;
   }
@@ -18,11 +32,15 @@ export default function Step4(props) {
         <div className="row">
           <div className="col">
             <h3 className="d-inline">MODEL VOZILA</h3>
-            <button type="button">Uredi</button>
+            <button type="button" onClick={changeModel}>
+              Uredi
+            </button>
           </div>
           <div className="col">
             <h3 className="d-inline">ODABRANE USLUGE</h3>
-            <button type="button">Uredi</button>
+            <button type="button" onClick={changeService}>
+              Uredi
+            </button>
           </div>
         </div>
         <div className="row">
@@ -34,23 +52,27 @@ export default function Step4(props) {
             <div className="row" key={id}>
               <div className="col-6"></div>
               <div className="col">{service}</div>
-              <div className="col text-end">{price},00 KN</div>
+              <div className="col text-end">{price.toFixed(2)} KN</div>
             </div>
           );
         })}
         <div className="row">
-          <div className="col text-end">Popust (30%): -285 KN</div>
+          <div className="col text-end">
+            Popust (30%): -{props.store.discount.toFixed(2)} KN
+          </div>
         </div>
         <div className="row">
           <div className="col text-end">
-            UKUPNO: <strong>665,00 KN</strong>
+            UKUPNO: <strong>{total.toFixed(2)} KN</strong>
           </div>
         </div>
         <hr />
         <div className="row">
           <div className="col">
             <h3 className="d-inline">KONTAKT PODACI</h3>
-            <button type="button">Uredi</button>
+            <button type="button" onClick={changeContactInfo}>
+              Uredi
+            </button>
           </div>
         </div>
         <div className="row">

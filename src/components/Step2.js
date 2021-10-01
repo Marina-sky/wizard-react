@@ -1,22 +1,48 @@
 import React from "react";
 
 export default function Step2(props) {
-  function handleChange(event) {
-		const service = {
-			service: event.target.value,
-			price: event.target.dataset.price
-		}
+  
+	function refreshTotal() {
+		let total = props.store.sum - props.store.discount;
+		document.getElementById("total").innerHTML = total.toFixed(2);
+      
+	}
+	
+	function handleChange(event) {
+    const service = {
+      service: event.target.value,
+      price: parseInt(event.target.dataset.price),
+    };
     if (event.target.checked) {
       props.store.service.push(service);
+      props.store.sum += parseInt(event.target.dataset.price);
     } else {
-      let index = props.store.service.findIndex(i => i.service === event.target.value);
+      let index = props.store.service.findIndex(
+        (i) => i.service === event.target.value
+      );
       if (index !== -1) {
         props.store.service.splice(index, 1);
       }
+      props.store.sum -= parseInt(event.target.dataset.price);
     }
-		//sum += event.target.dataset.price;
-		console.log(props.store.service);
+
+		props.store.discount = 0;
+		document.getElementById("discount").innerHTML =
+      props.store.discount.toFixed(2);
+    document.getElementById("sum").innerHTML = props.store.sum.toFixed(2);
+		refreshTotal();
   }
+
+	function useCoupon() {
+		let coupon = document.getElementById("coupon-input").value;
+
+		if (coupon === "Tokić123") {
+			props.store.discount = props.store.sum * 0.3;
+			document.getElementById("discount").innerHTML =
+        props.store.discount.toFixed(2);
+			refreshTotal();
+		}
+	}
 
   if (props.currentStep !== 2) {
     return null;
@@ -80,9 +106,31 @@ export default function Step2(props) {
       />
       <label htmlFor="service6">Zamjena ulja u kočnicama (299 kn)</label>
       <div className="coupon text-end">
-        <a href="/">Imam kupon</a>
+        <a href="/" className="d-block">
+          Imam kupon
+        </a>
+        <input
+          type="text"
+          placeholder="Unesite kod kupona ovdje"
+          id="coupon-input"
+        />
+        <button type="button" onClick={useCoupon}>
+          Primjeni
+        </button>
       </div>
-      <div className="price text-end">UKUPNO: 950 KN</div>
+      <div className="price text-end">
+        <p>
+          OSNOVICA:
+          <span id="sum">{props.store.sum.toFixed(2)}</span> KN
+          <br />
+          POPUST (30%): -
+          <span id="discount">{props.store.discount.toFixed(2)}</span> KN
+        </p>
+        UKUPNO:
+        <strong>
+          <span id="total">{props.store.sum - props.store.discount}</span> KN
+        </strong>
+      </div>
     </div>
   );
 }
