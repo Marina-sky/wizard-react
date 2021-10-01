@@ -121,14 +121,14 @@ export default function Step2(props) {
       <div className="price text-end">
         <p>
           OSNOVICA:
-          <span id="sum">{props.store.sum.toFixed(2)}</span> KN
+          <span id="sum">{" "}{props.store.sum.toFixed(2)}</span> KN
           <br />
           POPUST (30%): -
           <span id="discount">{props.store.discount.toFixed(2)}</span> KN
         </p>
         UKUPNO:
         <strong>
-          <span id="total">{props.store.sum - props.store.discount}</span> KN
+          <span id="total">{" "}{props.store.sum - props.store.discount}</span> KN
         </strong>
       </div>
     </div>
