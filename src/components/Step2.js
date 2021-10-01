@@ -1,14 +1,12 @@
 import React from "react";
 
 export default function Step2(props) {
-  
-	function refreshTotal() {
-		let total = props.store.sum - props.store.discount;
-		document.getElementById("total").innerHTML = total.toFixed(2);
-      
-	}
-	
-	function handleChange(event) {
+  function refreshTotal() {
+    let total = props.store.sum - props.store.discount;
+    document.getElementById("total").innerHTML = total.toFixed(2);
+  }
+
+  function handleChange(event) {
     const service = {
       service: event.target.value,
       price: parseInt(event.target.dataset.price),
@@ -26,22 +24,32 @@ export default function Step2(props) {
       props.store.sum -= parseInt(event.target.dataset.price);
     }
 
-		props.store.discount = 0;
-		document.getElementById("discount").innerHTML =
+    props.store.discount = 0;
+    document.getElementById("discount").innerHTML =
       props.store.discount.toFixed(2);
     document.getElementById("sum").innerHTML = props.store.sum.toFixed(2);
-		refreshTotal();
+    refreshTotal();
   }
 
-	function useCoupon() {
-		let coupon = document.getElementById("coupon-input").value;
+  function useCoupon() {
+    let coupon = document.getElementById("coupon-input").value;
 
-		if (coupon === "Tokić123") {
-			props.store.discount = props.store.sum * 0.3;
-			document.getElementById("discount").innerHTML =
+    if (coupon === "Tokić123") {
+			document.getElementById("confirmation").style.display = "block";
+			document.getElementById("calculate-discount").style.display = "block";
+			document.getElementById("coupon-link").style.display = "none";
+			document.getElementById("coupon-form").style.display = "none";
+
+      props.store.discount = props.store.sum * 0.3;
+      document.getElementById("discount").innerHTML =
         props.store.discount.toFixed(2);
-			refreshTotal();
-		}
+      refreshTotal();
+    }
+  }
+
+	function showCouponForm(event) {
+		event.preventDefault();
+		document.getElementById("coupon-form").style.display = "block";
 	}
 
   if (props.currentStep !== 2) {
@@ -105,31 +113,43 @@ export default function Step2(props) {
         onChange={handleChange}
       />
       <label htmlFor="service6">Zamjena ulja u kočnicama (299 kn)</label>
-      <div className="coupon text-end">
-        <a href="/" className="d-block">
+      <div className="coupon text-end mt-5">
+        <a
+          href="/"
+          id="coupon-link"
+          style={{ display: "block" }}
+          onClick={showCouponForm}
+        >
           Imam kupon
         </a>
-        <input
-          type="text"
-          placeholder="Unesite kod kupona ovdje"
-          id="coupon-input"
-        />
-        <button type="button" onClick={useCoupon}>
-          Primjeni
-        </button>
+        <div id="confirmation" className="mb-3" style={{ display: "none", color: "green" }}>
+          Hvala vam, unijeli ste ispravan kod kupona
+        </div>
+        <div id="coupon-form" style={{ display: "none" }}>
+          <input
+            type="text"
+            placeholder="Unesite kod kupona ovdje"
+            id="coupon-input"
+          />
+          <button type="button" onClick={useCoupon}>
+            Primjeni
+          </button>
+        </div>
       </div>
       <div className="price text-end">
-        <p>
-          OSNOVICA:
-          <span id="sum">{" "}{props.store.sum.toFixed(2)}</span> KN
+        <div id="calculate-discount" style={{ display: "none" }}>
+          OSNOVICA: <span id="sum">{props.store.sum.toFixed(2)}</span> KN
           <br />
           POPUST (30%): -
           <span id="discount">{props.store.discount.toFixed(2)}</span> KN
-        </p>
-        UKUPNO:
-        <strong>
-          <span id="total">{" "}{props.store.sum - props.store.discount}</span> KN
-        </strong>
+        </div>
+        <div className="fs-4">
+          UKUPNO:
+          <strong>
+            {" "}
+            <span id="total">{props.store.sum - props.store.discount}</span> KN
+          </strong>
+        </div>
       </div>
     </div>
   );
