@@ -47,7 +47,7 @@ class Wizard extends React.Component {
         }
         document.getElementById("error").innerText =
           "Molimo vas odaberite barem jednu uslugu";
-          return false;
+        return false;
       case 3:
         if (store.user.name && store.user.phone && store.user.email) {
           document.getElementById("error").innerText = "";
@@ -55,7 +55,7 @@ class Wizard extends React.Component {
         }
         document.getElementById("error").innerText =
           "Molimo vas ispunite obavezna polja";
-          return false;
+        return false;
     }
   }
 
@@ -65,6 +65,7 @@ class Wizard extends React.Component {
     this.setState({
       currentStep: currentStep,
     });
+    document.getElementById("error").innerText = "";
   };
 
   setStep = (step) => {

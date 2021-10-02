@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Step3(props) {
-  function handleChange(event) {
+  function handleChange() {
     let nameValue = document.getElementById("name").value;
     let phoneValue = document.getElementById("phone").value;
     let emailValue = document.getElementById("email").value;
