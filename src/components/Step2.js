@@ -35,22 +35,24 @@ export default function Step2(props) {
     let coupon = document.getElementById("coupon-input").value;
 
     if (coupon === "Tokić123") {
-			document.getElementById("confirmation").style.display = "block";
-			document.getElementById("calculate-discount").style.display = "block";
-			document.getElementById("coupon-link").style.display = "none";
-			document.getElementById("coupon-form").style.display = "none";
+      document.getElementById("confirmation").style.display = "block";
+      document.getElementById("calculate-discount").style.display = "block";
+      document.getElementById("coupon-link").style.display = "none";
+      document.getElementById("coupon-form").style.display = "none";
 
       props.store.discount = props.store.sum * 0.3;
       document.getElementById("discount").innerHTML =
         props.store.discount.toFixed(2);
       refreshTotal();
+    } else {
+      document.getElementById("coupon-error").style.display = "block";
     }
   }
 
-	function showCouponForm(event) {
-		event.preventDefault();
-		document.getElementById("coupon-form").style.display = "block";
-	}
+  function showCouponForm(event) {
+    event.preventDefault();
+    document.getElementById("coupon-form").style.display = "block";
+  }
 
   if (props.currentStep !== 2) {
     return null;
@@ -122,7 +124,18 @@ export default function Step2(props) {
         >
           Imam kupon
         </a>
-        <div id="confirmation" className="mb-3" style={{ display: "none", color: "green" }}>
+        <div
+          id="confirmation"
+          className="mb-3"
+          style={{ display: "none", color: "green" }}
+        >
+          Hvala vam, unijeli ste ispravan kod kupona
+        </div>
+        <div
+          id="confirmation"
+          className="mb-3"
+          style={{ display: "none", color: "green" }}
+        >
           Hvala vam, unijeli ste ispravan kod kupona
         </div>
         <div id="coupon-form" style={{ display: "none" }}>
@@ -134,6 +147,13 @@ export default function Step2(props) {
           <button type="button" onClick={useCoupon}>
             Primjeni
           </button>
+          <div
+            id="coupon-error"
+            className="mb-3"
+            style={{ display: "none", color: "red" }}
+          >
+            Kod kupona nije ispravan
+          </div>
         </div>
       </div>
       <div className="price text-end">

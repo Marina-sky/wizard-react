@@ -20,11 +20,44 @@ class Wizard extends React.Component {
 
   _next = () => {
     let currentStep = this.state.currentStep;
+
+    if (this.validateForm(currentStep) === false) {
+      return false;
+    }
     currentStep = currentStep >= 4 ? 5 : currentStep + 1;
     this.setState({
       currentStep: currentStep,
     });
   };
+
+  validateForm(step) {
+    switch (step) {
+      case 1:
+        if (store.model) {
+          document.getElementById("error").innerText = "";
+          return true;
+        }
+        document.getElementById("error").innerText =
+          "Molimo vas odaberite proizvođača vašeg vozila";
+        return false;
+      case 2:
+        if (store.service.length !== 0) {
+          document.getElementById("error").innerText = "";
+          return true;
+        }
+        document.getElementById("error").innerText =
+          "Molimo vas odaberite barem jednu uslugu";
+          return false;
+      case 3:
+        if (store.user.name && store.user.phone && store.user.email) {
+          document.getElementById("error").innerText = "";
+          return true;
+        }
+        document.getElementById("error").innerText =
+          "Molimo vas ispunite obavezna polja";
+          return false;
+    }
+  }
 
   _prev = () => {
     let currentStep = this.state.currentStep;
@@ -34,21 +67,17 @@ class Wizard extends React.Component {
     });
   };
 
-   setStep = (step) => {
+  setStep = (step) => {
     this.setState({
       currentStep: step,
     });
-  }
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
     });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
   };
 
   previousButton() {
@@ -95,7 +124,7 @@ class Wizard extends React.Component {
     return (
       <div className="App">
         <h1 className="text-center mb-5">Konfigurator servisa</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <Step1
             currentStep={this.state.currentStep}
             handleChange={this.handleChange}
@@ -111,8 +140,13 @@ class Wizard extends React.Component {
             handleChange={this.handleChange}
             store={store}
           />
-          <Step4 currentStep={this.state.currentStep} store={store} setStep={this.setStep} />
+          <Step4
+            currentStep={this.state.currentStep}
+            store={store}
+            setStep={this.setStep}
+          />
           <Message currentStep={this.state.currentStep} />
+          <div id="error" style={{ color: "red" }}></div>
           <div className="buttons">
             {this.previousButton()}
             {this.nextButton()}
