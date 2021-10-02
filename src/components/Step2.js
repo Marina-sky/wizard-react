@@ -131,13 +131,6 @@ export default function Step2(props) {
         >
           Hvala vam, unijeli ste ispravan kod kupona
         </div>
-        <div
-          id="confirmation"
-          className="mb-3"
-          style={{ display: "none", color: "green" }}
-        >
-          Hvala vam, unijeli ste ispravan kod kupona
-        </div>
         <div id="coupon-form" style={{ display: "none" }}>
           <input
             type="text"
