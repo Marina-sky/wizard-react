@@ -76,16 +76,16 @@ export default function Step4(props) {
           </div>
         </div>
         <div className="row">
-          <div className="col">Ime i prezime:</div>
-          <div className="col">{props.store.user.name}</div>
-          <div className="col">Email adresa:</div>
-          <div className="col">{props.store.user.email}</div>
+          <div className="col-3">Ime i prezime:</div>
+          <div className="col-3">{props.store.user.name}</div>
+          <div className="col-3">Email adresa:</div>
+          <div className="col-3">{props.store.user.email}</div>
         </div>
         <div className="row">
-          <div className="col">Broj telefona:</div>
-          <div className="col">{props.store.user.phone}</div>
-          <div className="col">Napomena:</div>
-          <div className="col">{props.store.user.remark}</div>
+          <div className="col-3">Broj telefona:</div>
+          <div className="col-3">{props.store.user.phone}</div>
+          <div className="col-3">Napomena:</div>
+          <div className="col-3">{props.store.user.remark}</div>
         </div>
       </div>
     </div>
