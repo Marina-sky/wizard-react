@@ -22,6 +22,7 @@ export default function Step3(props) {
       <input
         type="text"
         className="form-control"
+        defaultValue={props.store.user.name}
         name="name"
         id="name"
         placeholder="Ime i prezime*"
@@ -30,6 +31,7 @@ export default function Step3(props) {
       <input
         type="text"
         className="form-control"
+        defaultValue={props.store.user.phone}
         name="phone"
         id="phone"
         placeholder="Broj telefona*"
@@ -38,6 +40,7 @@ export default function Step3(props) {
       <input
         type="email"
         className="form-control"
+        defaultValue={props.store.user.email}
         name="email"
         id="email"
         placeholder="Email adresa*"
@@ -46,6 +49,7 @@ export default function Step3(props) {
       <input
         type="text"
         className="form-control remark"
+        defaultValue={props.store.user.remark}
         name="remark"
         id="remark"
         placeholder="Napomena (opcionalno)"

@@ -63,6 +63,13 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Zamjena ulja i filtera"
+        defaultChecked={
+          props.store.service.find(
+            (service) => service.service === "Zamjena ulja i filtera"
+          )
+            ? true
+            : false
+        }
         name="service"
         data-price={500}
         id="service1"
@@ -72,6 +79,13 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Promjena pakni"
+        defaultChecked={
+          props.store.service.find(
+            (service) => service.service === "Promjena pakni"
+          )
+            ? true
+            : false
+        }
         name="service"
         data-price={450}
         id="service2"
@@ -81,6 +95,13 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Promjena guma"
+        defaultChecked={
+          props.store.service.find(
+            (service) => service.service === "Promjena guma"
+          )
+            ? true
+            : false
+        }
         data-price={100}
         name="service"
         id="service3"
@@ -91,6 +112,13 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Servis klima uređaja"
+        defaultChecked={
+          props.store.service.find(
+            (service) => service.service === "Servis klima uređaja"
+          )
+            ? true
+            : false
+        }
         data-price={299}
         name="service"
         id="service4"
@@ -100,6 +128,13 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Balansiranje guma"
+        defaultChecked={
+          props.store.service.find(
+            (service) => service.service === "Balansiranje guma"
+          )
+            ? true
+            : false
+        }
         data-price={50}
         name="service"
         id="service5"
@@ -109,6 +144,13 @@ export default function Step2(props) {
       <input
         type="checkbox"
         value="Zamjena ulja u kočnicama"
+        defaultChecked={
+          props.store.service.find(
+            (service) => service.service === "Zamjena ulja u kočnicama"
+          )
+            ? true
+            : false
+        }
         data-price={299}
         name="service"
         id="service6"

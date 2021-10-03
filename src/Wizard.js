@@ -30,6 +30,15 @@ class Wizard extends React.Component {
     });
   };
 
+  _prev = () => {
+    let currentStep = this.state.currentStep;
+    currentStep = currentStep <= 1 ? 1 : currentStep - 1;
+    this.setState({
+      currentStep: currentStep,
+    });
+    document.getElementById("error").innerText = "";
+  };
+
   validateForm(step) {
     switch (step) {
       case 1:
@@ -56,17 +65,10 @@ class Wizard extends React.Component {
         document.getElementById("error").innerText =
           "Molimo vas ispunite obavezna polja";
         return false;
+      default:
+        document.getElementById("error").innerText = "";
     }
   }
-
-  _prev = () => {
-    let currentStep = this.state.currentStep;
-    currentStep = currentStep <= 1 ? 1 : currentStep - 1;
-    this.setState({
-      currentStep: currentStep,
-    });
-    document.getElementById("error").innerText = "";
-  };
 
   setStep = (step) => {
     this.setState({

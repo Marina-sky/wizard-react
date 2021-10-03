@@ -49,7 +49,7 @@ export default function Step4(props) {
         {props.store.service.map((item) => {
           const { id, service, price } = item;
           return (
-            <div className="row" key={id}>
+            <div className="row" key={id === "service" && id}>
               <div className="col-6"></div>
               <div className="col">{service}</div>
               <div className="col text-end">{price.toFixed(2)} KN</div>
