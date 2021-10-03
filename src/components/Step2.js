@@ -32,9 +32,9 @@ export default function Step2(props) {
   }
 
   function useCoupon() {
-    let coupon = document.getElementById("coupon-input").value;
+    props.store.coupon = document.getElementById("coupon-input").value;
 
-    if (coupon === "Tokić123") {
+    if (props.store.coupon === "Tokić123") {
       document.getElementById("confirmation").style.display = "block";
       document.getElementById("calculate-discount").style.display = "block";
       document.getElementById("coupon-link").style.display = "none";
@@ -176,6 +176,7 @@ export default function Step2(props) {
         <div id="coupon-form" style={{ display: "none" }}>
           <input
             type="text"
+						defaultValue={props.store.coupon}
             placeholder="Unesite kod kupona ovdje"
             id="coupon-input"
           />
