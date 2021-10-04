@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "./Modal"
 import "./Wizard.css";
 import UserData from "./UserData";
 
@@ -15,8 +16,10 @@ class Wizard extends React.Component {
     super(props);
     this.state = {
       currentStep: 1,
+      show: false,
     };
   }
+  
 
   _next = () => {
     let currentStep = this.state.currentStep;
@@ -123,39 +126,68 @@ class Wizard extends React.Component {
     return null;
   }
 
+  closeButton() {
+    let currentStep = this.state.currentStep;
+    if (currentStep === 5) {
+      return (
+        <button className="btn btn-success" type="button" onClick={this.closeModal}>
+          Zatvori
+        </button>
+      );
+    }
+    return null;
+  }
+
+  showModal = (e) => {
+    this.setState({ show: true });
+  };
+
+  closeModal = () => {
+    this.setState({ show: false });
+  };
+
   render() {
     return (
       <div className="App">
-        <h1 className="text-center mb-5">Konfigurator servisa</h1>
-        <form>
-          <Step1
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            store={store}
-          />
-          <Step2
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            store={store}
-          />
-          <Step3
-            currentStep={this.state.currentStep}
-            handleChange={this.handleChange}
-            store={store}
-          />
-          <Step4
-            currentStep={this.state.currentStep}
-            store={store}
-            setStep={this.setStep}
-          />
-          <Message currentStep={this.state.currentStep} />
-          <div id="error" style={{ color: "red" }}></div>
-          <div className="buttons">
-            {this.previousButton()}
-            {this.nextButton()}
-            {this.sendButton()}
-          </div>
-        </form>
+        <div className="text-center">
+        <p>Pritisnite gumb niže kako biste pokrenuli</p>
+        <button type="button" className="btn btn-primary" onClick={this.showModal}>
+          Pokreni konfigurator
+        </button>
+        </div>
+        <Modal show={this.state.show} onHide={this.closeModal}>
+          <h1 className="text-center mb-5">Konfigurator servisa</h1>
+          <form>
+            <Step1
+              currentStep={this.state.currentStep}
+              handleChange={this.handleChange}
+              store={store}
+            />
+            <Step2
+              currentStep={this.state.currentStep}
+              handleChange={this.handleChange}
+              store={store}
+            />
+            <Step3
+              currentStep={this.state.currentStep}
+              handleChange={this.handleChange}
+              store={store}
+            />
+            <Step4
+              currentStep={this.state.currentStep}
+              store={store}
+              setStep={this.setStep}
+            />
+            <Message currentStep={this.state.currentStep} />
+            <div id="error" style={{ color: "red" }}></div>
+            <div className="buttons">
+              {this.previousButton()}
+              {this.nextButton()}
+              {this.sendButton()}
+              {this.closeButton()}
+            </div>
+          </form>
+        </Modal>
       </div>
     );
   }

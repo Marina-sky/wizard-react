@@ -11,11 +11,6 @@ export default function Message(props) {
           Vaša prijava je uspješno poslana i zaprimljena. Kontaktirati ćemo vas
           u najkraćem mogućem roku. Hvala vam.
         </p>
-        <div className="close-button">
-          <button className="btn btn-success" type="button">
-            Zatvori
-          </button>
-        </div>
       </div>
     );
   }

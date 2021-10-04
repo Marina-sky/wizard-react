@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import Wizard from './Wizard';
 
 ReactDOM.render(
