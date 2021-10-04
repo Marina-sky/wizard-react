@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "./Modal"
 import "./Wizard.css";
 import UserData from "./UserData";
+import logo from "./tokic-logo.png"
 
 import Step1 from "./components/Step1";
 import Step2 from "./components/Step2";
@@ -149,7 +150,12 @@ class Wizard extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className="text-center">
+        <header>
+          <img src={logo} className="app-logo img-fluid" alt="logo" />
+          <h1 className="d-inline main-heading">Konfigurator servisa</h1>
+          <h2 className="subheading">Izračunajte trošak servisa</h2><hr />
+        </header>
+        <div className="text-center mt-5">
         <p>Pritisnite gumb niže kako biste pokrenuli</p>
         <button type="button" className="btn btn-primary" onClick={this.showModal}>
           Pokreni konfigurator
