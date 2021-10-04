@@ -139,7 +139,7 @@ class Wizard extends React.Component {
     return null;
   }
 
-  showModal = (e) => {
+  showModal = () => {
     this.setState({ show: true });
   };
 
@@ -161,7 +161,7 @@ class Wizard extends React.Component {
           Pokreni konfigurator
         </button>
         </div>
-        <Modal show={this.state.show} onHide={this.closeModal}>
+        <Modal show={this.state.show}>
           <h1 className="text-center mb-5">Konfigurator servisa</h1>
           <form>
             <Step1
